@@ -1,0 +1,19 @@
+---
+# tasks file for nvchad
+- name: ensure nvchad config is cloned locally
+  git:
+    repo: https://github.com/NvChad/NvChad
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/{{ role_name | basename }}"
+    clone: true
+
+- name: ensure my custom config is linked to nvchad custom directory
+  ansible.builtin.file: 
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_env.XDG_CONFIG_HOME }}/{{ role_name | basename }}/lua/custom"
+    state: link
+
+- name: ensure nvchad aliases file is linked
+  ansible.builtin.file: 
+    src: "{{ role_path }}/files/helpers.sh"
+    dest: "{{ ansible_env.XDG_DATA_HOME }}/zsh/nvchad.sh"
+    state: link

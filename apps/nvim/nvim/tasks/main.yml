@@ -1,0 +1,10 @@
+---
+# tasks file for zsh
+- name: ensure nvim is installed
+  community.general.homebrew:
+    name: neovim
+    state: present
+  when: ansible_distribution == 'MacOSX'
+  tags:
+    - apps
+

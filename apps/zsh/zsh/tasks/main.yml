@@ -1,0 +1,9 @@
+---
+# tasks file for zsh
+- name: ensure zsh is installed
+  community.general.homebrew:
+    name: zsh
+    state: present
+  when: ansible_distribution == 'MacOSX'
+  tags:
+    - apps

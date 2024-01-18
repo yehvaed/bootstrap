@@ -1,0 +1,10 @@
+---
+# tasks file for zsh
+- name: ensure zsh files are linked
+  ansible.builtin.file: 
+    src: "{{ role_path }}/files/{{ item.value }}"
+    dest: "{{ item.key }}"
+    state: link 
+  with_dict: 
+    "~/.zshrc": .zshrc
+
